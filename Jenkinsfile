@@ -7,8 +7,17 @@ pipeline {
       }
     }
     stage('ManualStep') {
-      steps {
-        input(message: 'PleaseClickYouInput', ok: 'ButtonOK', id: 'iID', submitter: 'InputSubmitter', submitterParameter: 'InputSubmitterParam')
+      parallel {
+        stage('ManualStep') {
+          steps {
+            input(message: 'PleaseClickYouInput', ok: 'ButtonOK', id: 'iID', submitter: 'InputSubmitter', submitterParameter: 'InputSubmitterParam')
+          }
+        }
+        stage('') {
+          steps {
+            input(message: 'WaitForInput', ok: 'ButtonOK', id: 'IdOK')
+          }
+        }
       }
     }
     stage('SelectedMSG') {
@@ -30,7 +39,7 @@ pipeline {
     }
     stage('End') {
       steps {
-        echo 'End'
+        isUnix()
       }
     }
   }
