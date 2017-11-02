@@ -13,7 +13,7 @@ pipeline {
             input(message: 'PleaseClickYouInput', ok: 'ButtonOK', id: 'iID', submitter: 'InputSubmitter', submitterParameter: 'InputSubmitterParam')
           }
         }
-        stage('') {
+        stage('error') {
           steps {
             input(message: 'WaitForInput', ok: 'ButtonOK', id: 'IdOK')
           }
